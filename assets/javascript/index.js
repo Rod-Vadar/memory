@@ -28,16 +28,36 @@ if player loses 3 times, the game is over
 
 function show(){
     document.querySelector('#crazy-fun').style.visibility = 'visible';
-    // document.querySelector('.game-start').style.visibility = 'visible';
+    document.querySelector('#start-button').style.fontSize = 'xx-large';
+
+}
+
+function showColors(){
+    document.querySelector('#red').style.backgroundColor = 'red';
+    document.querySelector('#yellow').style.backgroundColor = 'yellow';
+    document.querySelector('#blue').style.backgroundColor = 'blue';
+}
+
+function hideCOlors(){
+    document.querySelector('#red').style.backgroundColor = 'blue';
+    document.querySelector('#yellow').style.backgroundColor = 'red';
+    document.querySelector('#blue').style.backgroundColor = 'yellow';
 }
 
 function hide(){
     document.querySelector('#crazy-fun').style.visibility = 'hidden';
-    // document.querySelector('.game-start').style.visibility = 'hidden';
+    document.querySelector('#start-button').style.fontSize = 'x-large';
+    
 }
 
 for(var i=1800; i < 9000000; i=i+1800)
 {
 	setTimeout("hide()",i);
 	setTimeout("show()",i+900);
+}
+
+for(var i=3000; i < 9000000; i=i+3000)
+{
+	setTimeout("showColors()",i);
+	setTimeout("hideCOlors()",i+1500);
 }
