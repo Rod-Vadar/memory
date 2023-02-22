@@ -58,18 +58,13 @@ function start() {
         randomNumbers.push(Math.floor(Math.random() * 3) + 1);
     }
 
-    function sleep(seconds) {
-        var currentTime = new Date().getTime();
-        while (currentTime + seconds >= new Date().getTime()) {}
-    }
-
     // sequence the buttons
     let i = 0;
     function sequence() {
         document.querySelector('#crazy-fun').textContent = randomNumbers[i];
     if (i < numberOfRandomNumbers) {
         if (randomNumbers[i] === 1) {
-            //setTimeout(() => {},200);
+            
             document.querySelector('#red').style.backgroundColor = 'white';
             setTimeout(() => {
                 document.querySelector('#red').style.backgroundColor = 'red';
@@ -79,7 +74,7 @@ function start() {
                 },320)
             }, 870);
         } else if (randomNumbers[i] === 2) {
-            //setTimeout(() => {},200);
+            
             document.querySelector('#yellow').style.backgroundColor = 'white'
             setTimeout(() => {
                 document.querySelector('#yellow').style.backgroundColor = 'yellow';
@@ -89,7 +84,7 @@ function start() {
                 },320)
             }, 870);
         } else if (randomNumbers[i] === 3) {
-            //setTimeout(() => {},200);
+            
             document.querySelector('#blue').style.backgroundColor = 'white';
             setTimeout(() => {
                 document.querySelector('#blue').style.backgroundColor = 'blue';
