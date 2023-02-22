@@ -27,6 +27,11 @@
     font-size: 250%;
 }
 
+#header-message{
+    color: rgb(255, 0, 0);
+    font-size: 250%;
+}
+
 
 .color-buttons {
     display: flex;

@@ -25,46 +25,15 @@ if player loses 3 times, the game is over
 
 */
 
-let player = false;
-
-function show() {
-    document.querySelector('#crazy-fun').style.visibility = 'visible';
-    document.querySelector('#start-button').style.fontSize = 'x-large';
-
-}
-
-function showColors() {
-    document.querySelector('#red').style.backgroundColor = 'red';
-    document.querySelector('#yellow').style.backgroundColor = 'yellow';
-    document.querySelector('#blue').style.backgroundColor = 'blue';
-}
-
-function hideCOlors() {
-    document.querySelector('#red').style.backgroundColor = 'blue';
-    document.querySelector('#yellow').style.backgroundColor = 'red';
-    document.querySelector('#blue').style.backgroundColor = 'yellow';
-}
-
-function hide() {
-    document.querySelector('#crazy-fun').style.visibility = 'hidden';
-    document.querySelector('#start-button').style.fontSize = 'large';
-
-}
-
-// for (var i = 1800; i < 9000000; i = i + 1800) {
-//     setTimeout("hide()", i);
-//     setTimeout("show()", i + 900);
-// }
-
-// for (var i = 3000; i < 9000000; i = i + 3000) {
-//     setTimeout("showColors()", i);
-//     setTimeout("hideCOlors()", i + 1500);
-// }
 
 
 
 
 
+// Two event listeners to start the game
+//Mouse click to start the game
+document.querySelector('#start-button').addEventListener('click', start);
+//Space bar to start the game
 document.addEventListener('keydown', function (event) {
     console.log(event.code);
     if (event.code === 'Space') {
@@ -72,11 +41,11 @@ document.addEventListener('keydown', function (event) {
     }
 });
 
-document.querySelector('#start-button').addEventListener('click', start);
+
 
 //start the game
 function start() {
-    player = true;
+    let playerScore = 0;
     document.querySelector('#crazy-fun').textContent = 'GET READY TO PLAY!';
     document.querySelector('#crazy-fun').style.color = 'yellow';
     document.querySelector('#start-button').style.visibility = 'hidden';
@@ -89,14 +58,80 @@ function start() {
         randomNumbers.push(Math.floor(Math.random() * 3) + 1);
     }
 
-    document.querySelector('#crazy-fun').textContent = randomNumbers;
+    function sleep(seconds) {
+        var currentTime = new Date().getTime();
+        while (currentTime + seconds >= new Date().getTime()) {}
+    }
 
     // sequence the buttons
-    if(randomNumbers[0]===1){
-        setTimeout(document.querySelector('#red').style.backgroundColor = 'white', 400 );
-        
+    let i = 0;
+    function sequence() {
+        document.querySelector('#crazy-fun').textContent = randomNumbers[i];
+    if (i < numberOfRandomNumbers) {
+        if (randomNumbers[i] === 1) {
+            //setTimeout(() => {},200);
+            document.querySelector('#red').style.backgroundColor = 'white';
+            setTimeout(() => {
+                document.querySelector('#red').style.backgroundColor = 'red';
+                setTimeout(() => {
+                    i++;
+                    sequence();
+                },320)
+            }, 870);
+        } else if (randomNumbers[i] === 2) {
+            //setTimeout(() => {},200);
+            document.querySelector('#yellow').style.backgroundColor = 'white'
+            setTimeout(() => {
+                document.querySelector('#yellow').style.backgroundColor = 'yellow';
+                setTimeout(() => {
+                    i++;
+                    sequence();
+                },320)
+            }, 870);
+        } else if (randomNumbers[i] === 3) {
+            //setTimeout(() => {},200);
+            document.querySelector('#blue').style.backgroundColor = 'white';
+            setTimeout(() => {
+                document.querySelector('#blue').style.backgroundColor = 'blue';
+                setTimeout(() => {
+                    i++;
+                    sequence();
+                },320)
+            }, 870);
+        }
     }
+
+    }
+    sequence();
 }
 
 
 
+
+// function show() {
+//     document.querySelector('#crazy-fun').style.visibility = 'visible';
+//     document.querySelector('#start-button').style.fontSize = 'x-large';
+
+// }
+
+// function showColors() {
+//     document.querySelector('#red').style.backgroundColor = 'red';
+//     document.querySelector('#yellow').style.backgroundColor = 'yellow';
+//     document.querySelector('#blue').style.backgroundColor = 'blue';
+// }
+
+// function hideCOlors() {
+//     document.querySelector('#red').style.backgroundColor = 'blue';
+//     document.querySelector('#yellow').style.backgroundColor = 'red';
+//     document.querySelector('#blue').style.backgroundColor = 'yellow';
+// }
+
+// function hide() {
+//     document.querySelector('#crazy-fun').style.visibility = 'hidden';
+//     document.querySelector('#start-button').style.fontSize = 'large';
+
+// }
+
+// function vanish(){
+//     document.querySelector('#crazy-fun').style.display = 'none';
+// }
