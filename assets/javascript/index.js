@@ -26,38 +26,67 @@ if player loses 3 times, the game is over
 */
 
 
-function show(){
+function show() {
     document.querySelector('#crazy-fun').style.visibility = 'visible';
-    document.querySelector('#start-button').style.fontSize = 'xx-large';
+    document.querySelector('#start-button').style.fontSize = 'x-large';
 
 }
 
-function showColors(){
+function showColors() {
     document.querySelector('#red').style.backgroundColor = 'red';
     document.querySelector('#yellow').style.backgroundColor = 'yellow';
     document.querySelector('#blue').style.backgroundColor = 'blue';
 }
 
-function hideCOlors(){
+function hideCOlors() {
     document.querySelector('#red').style.backgroundColor = 'blue';
     document.querySelector('#yellow').style.backgroundColor = 'red';
     document.querySelector('#blue').style.backgroundColor = 'yellow';
 }
 
-function hide(){
+function hide() {
     document.querySelector('#crazy-fun').style.visibility = 'hidden';
-    document.querySelector('#start-button').style.fontSize = 'x-large';
-    
+    document.querySelector('#start-button').style.fontSize = 'large';
+
 }
 
-for(var i=1800; i < 9000000; i=i+1800)
-{
-	setTimeout("hide()",i);
-	setTimeout("show()",i+900);
+for (var i = 1800; i < 9000000; i = i + 1800) {
+    setTimeout("hide()", i);
+    setTimeout("show()", i + 900);
 }
 
-for(var i=3000; i < 9000000; i=i+3000)
-{
-	setTimeout("showColors()",i);
-	setTimeout("hideCOlors()",i+1500);
+for (var i = 3000; i < 9000000; i = i + 3000) {
+    setTimeout("showColors()", i);
+    setTimeout("hideCOlors()", i + 1500);
+}
+
+document.addEventListener('keydown', function (event) {
+    console.log(event.code);
+    if (event.code === 'Space') {
+        start();
+    }
+});
+
+document.querySelector('#start-button').addEventListener('click', start);
+
+//start the game
+function start() {
+    document.querySelector('#crazy-fun').textContent = 'GET READY TO PLAY!';
+    document.querySelector('#crazy-fun').style.color = 'yellow';
+    document.querySelector('#start-button').style.visibility = 'hidden';
+
+    // array to hold random numbers
+    const randomNumbers = [];
+    let numberOfRandomNumbers = 3;
+
+    for (let i = 0; i < numberOfRandomNumbers; i++) {
+        randomNumbers.push(Math.floor(Math.random() * 3) + 1);
+    }
+
+    document.querySelector('#crazy-fun').textContent = randomNumbers;
+
+    // sequence the buttons
+    if(randomNumbers[0]===1){
+        document.querySelector('#red').style.backgroundColor = 'white';
+    }
 }
