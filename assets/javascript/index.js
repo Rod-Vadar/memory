@@ -25,6 +25,7 @@ if player loses 3 times, the game is over
 
 */
 
+let player = false;
 
 function show() {
     document.querySelector('#crazy-fun').style.visibility = 'visible';
@@ -50,15 +51,19 @@ function hide() {
 
 }
 
-for (var i = 1800; i < 9000000; i = i + 1800) {
-    setTimeout("hide()", i);
-    setTimeout("show()", i + 900);
-}
+// for (var i = 1800; i < 9000000; i = i + 1800) {
+//     setTimeout("hide()", i);
+//     setTimeout("show()", i + 900);
+// }
 
-for (var i = 3000; i < 9000000; i = i + 3000) {
-    setTimeout("showColors()", i);
-    setTimeout("hideCOlors()", i + 1500);
-}
+// for (var i = 3000; i < 9000000; i = i + 3000) {
+//     setTimeout("showColors()", i);
+//     setTimeout("hideCOlors()", i + 1500);
+// }
+
+
+
+
 
 document.addEventListener('keydown', function (event) {
     console.log(event.code);
@@ -71,6 +76,7 @@ document.querySelector('#start-button').addEventListener('click', start);
 
 //start the game
 function start() {
+    player = true;
     document.querySelector('#crazy-fun').textContent = 'GET READY TO PLAY!';
     document.querySelector('#crazy-fun').style.color = 'yellow';
     document.querySelector('#start-button').style.visibility = 'hidden';
@@ -87,6 +93,10 @@ function start() {
 
     // sequence the buttons
     if(randomNumbers[0]===1){
-        document.querySelector('#red').style.backgroundColor = 'white';
+        setTimeout(document.querySelector('#red').style.backgroundColor = 'white', 400 );
+        
     }
 }
+
+
+
