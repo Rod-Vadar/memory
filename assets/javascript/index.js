@@ -30,9 +30,7 @@ if player loses 3 times, the game is over
 
 
 
-// Two event listeners to start the game
-//Mouse click to start the game
-document.querySelector('#start-button').addEventListener('click', start);
+
 //Space bar to start the game
 document.addEventListener('keydown', function (event) {
     console.log(event.code);
@@ -44,11 +42,13 @@ document.addEventListener('keydown', function (event) {
 
 
 //start the game
+let playerScore = 0;
+
 function start() {
-    let playerScore = 0;
+
     document.querySelector('#crazy-fun').textContent = 'GET READY TO PLAY!';
     document.querySelector('#crazy-fun').style.color = 'yellow';
-    document.querySelector('#start-button').style.visibility = 'hidden';
+    document.querySelector('#start-button').textContent = 'Play Again';
 
     // array to hold random numbers
     const randomNumbers = [];
@@ -60,41 +60,42 @@ function start() {
 
     // sequence the buttons
     let i = 0;
+
     function sequence() {
         // document.querySelector('#crazy-fun').textContent = randomNumbers[i];
-    if (i < numberOfRandomNumbers) {
-        if (randomNumbers[i] === 1) {
-            
-            document.querySelector('#red').style.backgroundColor = 'white';
-            setTimeout(() => {
-                document.querySelector('#red').style.backgroundColor = 'red';
+        if (i < numberOfRandomNumbers) {
+            if (randomNumbers[i] === 1) {
+
+                document.querySelector('#red').style.backgroundColor = 'white';
                 setTimeout(() => {
-                    i++;
-                    sequence();
-                },320)
-            }, 870);
-        } else if (randomNumbers[i] === 2) {
-            
-            document.querySelector('#yellow').style.backgroundColor = 'white'
-            setTimeout(() => {
-                document.querySelector('#yellow').style.backgroundColor = 'yellow';
+                    document.querySelector('#red').style.backgroundColor = 'red';
+                    setTimeout(() => {
+                        i++;
+                        sequence();
+                    }, 320)
+                }, 870);
+            } else if (randomNumbers[i] === 2) {
+
+                document.querySelector('#yellow').style.backgroundColor = 'white'
                 setTimeout(() => {
-                    i++;
-                    sequence();
-                },320)
-            }, 870);
-        } else if (randomNumbers[i] === 3) {
-            
-            document.querySelector('#blue').style.backgroundColor = 'white';
-            setTimeout(() => {
-                document.querySelector('#blue').style.backgroundColor = 'blue';
+                    document.querySelector('#yellow').style.backgroundColor = 'yellow';
+                    setTimeout(() => {
+                        i++;
+                        sequence();
+                    }, 320)
+                }, 870);
+            } else if (randomNumbers[i] === 3) {
+
+                document.querySelector('#blue').style.backgroundColor = 'white';
                 setTimeout(() => {
-                    i++;
-                    sequence();
-                },320)
-            }, 870);
+                    document.querySelector('#blue').style.backgroundColor = 'blue';
+                    setTimeout(() => {
+                        i++;
+                        sequence();
+                    }, 320)
+                }, 870);
+            }
         }
-    }
 
     }
     sequence();
@@ -105,41 +106,60 @@ function start() {
 
     //addEventListener for player inputs for left arrow, right arrow, and up arrow
     document.addEventListener('keydown', function (event) {
-        console.log(event.code);
+
         if (event.key === 'ArrowLeft') {
             document.querySelector('#red').style.backgroundColor = 'white';
             setTimeout(() => {
                 document.querySelector('#red').style.backgroundColor = 'red';
-            },270)
+            }, 270)
             playerInputs.push(1);
+            if (playerInputs.length === randomNumbers.length) {
+                comparePlayerInputs()
+            }
+
         } else if (event.key === 'ArrowDown') {
             document.querySelector('#yellow').style.backgroundColor = 'white';
             setTimeout(() => {
                 document.querySelector('#yellow').style.backgroundColor = 'yellow';
-            },270)
+            }, 270)
             playerInputs.push(2);
+            if (playerInputs.length === randomNumbers.length) {
+                comparePlayerInputs()
+            }
 
         } else if (event.key === 'ArrowRight') {
             document.querySelector('#blue').style.backgroundColor = 'white';
             setTimeout(() => {
                 document.querySelector('#blue').style.backgroundColor = 'blue';
-            },270)
+            }, 270)
             playerInputs.push(3);
-
+            if (playerInputs.length === randomNumbers.length) {
+                comparePlayerInputs()
+            }
         }
     });
 
-    // function comparePlayerInputs() {
-    //     if(playerInputs == randomNumbers){
-    //         document.querySelector('#crazy-fun').style.color = 'green';
-    //         document.querySelector('#crazy-fun').textContent = 'YOU WIN!';
-    //     } else if (playerInputs!= randomNumbers){
-    //         document.querySelector('#crazy-fun').style.color = 'red';
-    //         document.querySelector('#crazy-fun').textContent = 'YOU LOSE!';
-    //     }
-    // }
-    // comparePlayerInputs();
-    
+
+
+    function comparePlayerInputs() {
+        for (let i = 0; i < playerInputs.length; i++) {
+            if (playerInputs[i] === randomNumbers[i]) {
+                playerScore += 500;
+                document.querySelector('#player-score').textContent = playerScore;
+                document.querySelector('#crazy-fun').style.color = 'green';
+                document.querySelector('#crazy-fun').textContent = 'YOU WIN!';
+                
+            } else if (playerInputs[i] != randomNumbers[i]) {
+                document.querySelector('#crazy-fun').style.color = 'red';
+                document.querySelector('#crazy-fun').textContent = 'YOU LOSE!';
+            }
+        }
+
+    }
+
+
+
+
 }
 
 
