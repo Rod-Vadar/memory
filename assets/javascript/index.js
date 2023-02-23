@@ -162,33 +162,3 @@ function start() {
 
 }
 
-
-
-
-// function show() {
-//     document.querySelector('#crazy-fun').style.visibility = 'visible';
-//     document.querySelector('#start-button').style.fontSize = 'x-large';
-
-// }
-
-// function showColors() {
-//     document.querySelector('#red').style.backgroundColor = 'red';
-//     document.querySelector('#yellow').style.backgroundColor = 'yellow';
-//     document.querySelector('#blue').style.backgroundColor = 'blue';
-// }
-
-// function hideCOlors() {
-//     document.querySelector('#red').style.backgroundColor = 'blue';
-//     document.querySelector('#yellow').style.backgroundColor = 'red';
-//     document.querySelector('#blue').style.backgroundColor = 'yellow';
-// }
-
-// function hide() {
-//     document.querySelector('#crazy-fun').style.visibility = 'hidden';
-//     document.querySelector('#start-button').style.fontSize = 'large';
-
-// }
-
-// function vanish(){
-//     document.querySelector('#crazy-fun').style.display = 'none';
-// }
