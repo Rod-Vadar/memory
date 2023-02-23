@@ -61,7 +61,7 @@ function start() {
     // sequence the buttons
     let i = 0;
     function sequence() {
-        document.querySelector('#crazy-fun').textContent = randomNumbers[i];
+        // document.querySelector('#crazy-fun').textContent = randomNumbers[i];
     if (i < numberOfRandomNumbers) {
         if (randomNumbers[i] === 1) {
             
@@ -98,6 +98,48 @@ function start() {
 
     }
     sequence();
+
+
+    // make an array to hold the player's inputs
+    let playerInputs = [];
+
+    //addEventListener for player inputs for left arrow, right arrow, and up arrow
+    document.addEventListener('keydown', function (event) {
+        console.log(event.code);
+        if (event.key === 'ArrowLeft') {
+            document.querySelector('#red').style.backgroundColor = 'white';
+            setTimeout(() => {
+                document.querySelector('#red').style.backgroundColor = 'red';
+            },270)
+            playerInputs.push(1);
+        } else if (event.key === 'ArrowDown') {
+            document.querySelector('#yellow').style.backgroundColor = 'white';
+            setTimeout(() => {
+                document.querySelector('#yellow').style.backgroundColor = 'yellow';
+            },270)
+            playerInputs.push(2);
+
+        } else if (event.key === 'ArrowRight') {
+            document.querySelector('#blue').style.backgroundColor = 'white';
+            setTimeout(() => {
+                document.querySelector('#blue').style.backgroundColor = 'blue';
+            },270)
+            playerInputs.push(3);
+
+        }
+    });
+
+    // function comparePlayerInputs() {
+    //     if(playerInputs == randomNumbers){
+    //         document.querySelector('#crazy-fun').style.color = 'green';
+    //         document.querySelector('#crazy-fun').textContent = 'YOU WIN!';
+    //     } else if (playerInputs!= randomNumbers){
+    //         document.querySelector('#crazy-fun').style.color = 'red';
+    //         document.querySelector('#crazy-fun').textContent = 'YOU LOSE!';
+    //     }
+    // }
+    // comparePlayerInputs();
+    
 }
 
 
