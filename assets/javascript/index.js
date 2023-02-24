@@ -43,6 +43,7 @@ document.addEventListener('keydown', function (event) {
 
 //start the game
 let playerScore = 0;
+let numberOfRandomNumbers = 3;
 
 function start() {
 
@@ -52,15 +53,20 @@ function start() {
 
     // array to hold random numbers
     const randomNumbers = [];
-    let numberOfRandomNumbers = 3;
+    randomNumbers.length = numberOfRandomNumbers;
+    console.log(randomNumbers.length);
+    
 
     for (let i = 0; i < numberOfRandomNumbers; i++) {
-        randomNumbers.push(Math.floor(Math.random() * 3) + 1);
+        // randomNumbers.push(Math.floor(Math.random() * 3) + 1);
+        randomNumbers[i] = Math.floor(Math.random() * 3) + 1;
     }
 
-    // sequence the buttons
-    let i = 0;
+    
+    
 
+    // Flash the buttons that the computer chooses
+    let i = 0;
     function sequence() {
         // document.querySelector('#crazy-fun').textContent = randomNumbers[i];
         if (i < numberOfRandomNumbers) {
@@ -100,7 +106,7 @@ function start() {
     }
     sequence();
 
-
+    // get the player's inputs
     // make an array to hold the player's inputs
     let playerInputs = [];
 
@@ -140,15 +146,18 @@ function start() {
     });
 
 
-
+    // compare the player's inputs to the random numbers in the array
     function comparePlayerInputs() {
+        console.log(playerInputs);
+        console.log(randomNumbers);
+        console.log(playerInputs == randomNumbers);
         for (let i = 0; i < playerInputs.length; i++) {
             if (playerInputs[i] === randomNumbers[i]) {
-                playerScore += 500;
+                playerScore += 130;
                 document.querySelector('#player-score').textContent = playerScore;
                 document.querySelector('#crazy-fun').style.color = 'green';
                 document.querySelector('#crazy-fun').textContent = 'YOU WIN!';
-                
+                numberOfRandomNumbers +=1;//this needs fixed because it runs 3 times
             } else if (playerInputs[i] != randomNumbers[i]) {
                 document.querySelector('#crazy-fun').style.color = 'red';
                 document.querySelector('#crazy-fun').textContent = 'YOU LOSE!';
