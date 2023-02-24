@@ -46,7 +46,7 @@ let playerScore = 0;
 let numberOfRandomNumbers = 3;
 
 function start() {
-
+    let didWin = false;
     document.querySelector('#crazy-fun').textContent = 'GET READY TO PLAY!';
     document.querySelector('#crazy-fun').style.color = 'yellow';
     document.querySelector('#start-button').textContent = 'Play Again';
@@ -54,7 +54,7 @@ function start() {
     // array to hold random numbers
     const randomNumbers = [];
     randomNumbers.length = numberOfRandomNumbers;
-    console.log(randomNumbers.length);
+    console.log('number of random numbers = '+randomNumbers.length);
     
 
     for (let i = 0; i < numberOfRandomNumbers; i++) {
@@ -68,6 +68,7 @@ function start() {
     // Flash the buttons that the computer chooses
     let i = 0;
     function sequence() {
+        
         // document.querySelector('#crazy-fun').textContent = randomNumbers[i];
         if (i < numberOfRandomNumbers) {
             if (randomNumbers[i] === 1) {
@@ -157,13 +158,17 @@ function start() {
                 document.querySelector('#player-score').textContent = playerScore;
                 document.querySelector('#crazy-fun').style.color = 'green';
                 document.querySelector('#crazy-fun').textContent = 'YOU WIN!';
-                numberOfRandomNumbers +=1;//this needs fixed because it runs 3 times
+                didWin= true;
+                //this needs fixed because it runs 3 times
             } else if (playerInputs[i] != randomNumbers[i]) {
                 document.querySelector('#crazy-fun').style.color = 'red';
                 document.querySelector('#crazy-fun').textContent = 'YOU LOSE!';
+                didWin= false;
             }
         }
-
+        if(didWin){
+            numberOfRandomNumbers +=1;
+        }
     }
 
 
