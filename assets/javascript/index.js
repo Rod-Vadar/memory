@@ -21,11 +21,11 @@ if they are not the same, the player loses.
 
 increment the player's score by 10 for each time the correct light button is pressed
 
-if player loses 3 times, the game is over
+if player loses, the game is over
 
 */
 
-// soundFX
+// soundFX https://github.com/goldfire/howler.js#documentation
 
 
 
