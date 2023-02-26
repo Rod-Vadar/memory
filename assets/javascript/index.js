@@ -25,9 +25,17 @@ if player loses 3 times, the game is over
 
 */
 
+// soundFX
 
 
 
+
+
+// add event listener to the play button to force user to use spacebar to start the game
+    const playButton = document.getElementById('start-button');
+    playButton.addEventListener('click', function (event) {
+        document.querySelector('#crazy-fun').textContent = 'Press Spacebar to Start';
+});
 
 
 
@@ -35,7 +43,10 @@ if player loses 3 times, the game is over
 document.addEventListener('keydown', function (event) {
     console.log(event.code);
     if (event.code === 'Space') {
-        start();
+    document.querySelector('#crazy-fun').textContent = 'GET READY TO PLAY!';
+    document.querySelector('#crazy-fun').style.color = 'yellow';
+        const myTimeout = setTimeout(start, 1000);
+        
     }
 });
 
@@ -43,13 +54,57 @@ document.addEventListener('keydown', function (event) {
 
 //start the game
 let playerScore = 0;
-let numberOfRandomNumbers = 3;
+let numberOfRandomNumbers = 3; // Global variables as start() is called from itself and the changes would be reset.
 
 function start() {
+
+    // sounds
+    const introSound = new Howl({
+        src: ['intro.wav'],
+        volume: 0.5
+      });
+
+      introSound.play();
+    var count = 3;
+function anim() {
+    if (count > 0) {
+        console.log(count);
+        document.querySelector('#crazy-fun').style.color = 'yellow';
+        document.querySelector('#crazy-fun').textContent =count;
+        count--;
+        setTimeout(anim, 1000);
+    }
+    else {
+        document.querySelector('#crazy-fun').textContent = 'Go';
+        run();
+        
+    }
+}
+anim();
+
+function run(){
+    Howler.volume(0.5);
+    const loserSound = new Howl({
+        src: ['loser.wav'],
+        volume: 0.5
+      });
+
+      const playSound = new Howl({
+        src: ['play.wav'],
+        volume: 0.4
+      })
+
+      const winSound = new Howl({
+        src:['win.wav'],
+        volume: 0.1
+      })
     let didWin = false;
-    document.querySelector('#crazy-fun').textContent = 'GET READY TO PLAY!';
-    document.querySelector('#crazy-fun').style.color = 'yellow';
-    document.querySelector('#start-button').textContent = 'Play Again';
+    
+    
+    
+    document.querySelector('#play').textContent = 'Play Again';
+
+
 
     // array to hold random numbers
     const randomNumbers = [];
@@ -58,7 +113,6 @@ function start() {
     
 
     for (let i = 0; i < numberOfRandomNumbers; i++) {
-        // randomNumbers.push(Math.floor(Math.random() * 3) + 1);
         randomNumbers[i] = Math.floor(Math.random() * 3) + 1;
     }
 
@@ -74,6 +128,7 @@ function start() {
             if (randomNumbers[i] === 1) {
 
                 document.querySelector('#red').style.backgroundColor = 'white';
+                playSound.play();
                 setTimeout(() => {
                     document.querySelector('#red').style.backgroundColor = 'red';
                     setTimeout(() => {
@@ -84,6 +139,7 @@ function start() {
             } else if (randomNumbers[i] === 2) {
 
                 document.querySelector('#yellow').style.backgroundColor = 'white'
+                playSound.play();
                 setTimeout(() => {
                     document.querySelector('#yellow').style.backgroundColor = 'yellow';
                     setTimeout(() => {
@@ -94,6 +150,7 @@ function start() {
             } else if (randomNumbers[i] === 3) {
 
                 document.querySelector('#blue').style.backgroundColor = 'white';
+                playSound.play();
                 setTimeout(() => {
                     document.querySelector('#blue').style.backgroundColor = 'blue';
                     setTimeout(() => {
@@ -116,6 +173,7 @@ function start() {
 
         if (event.key === 'ArrowLeft') {
             document.querySelector('#red').style.backgroundColor = 'white';
+            playSound.play();
             setTimeout(() => {
                 document.querySelector('#red').style.backgroundColor = 'red';
             }, 270)
@@ -126,6 +184,7 @@ function start() {
 
         } else if (event.key === 'ArrowDown') {
             document.querySelector('#yellow').style.backgroundColor = 'white';
+            playSound.play();
             setTimeout(() => {
                 document.querySelector('#yellow').style.backgroundColor = 'yellow';
             }, 270)
@@ -136,6 +195,7 @@ function start() {
 
         } else if (event.key === 'ArrowRight') {
             document.querySelector('#blue').style.backgroundColor = 'white';
+            playSound.play();
             setTimeout(() => {
                 document.querySelector('#blue').style.backgroundColor = 'blue';
             }, 270)
@@ -158,20 +218,26 @@ function start() {
                 document.querySelector('#player-score').textContent = playerScore;
                 document.querySelector('#crazy-fun').style.color = 'green';
                 document.querySelector('#crazy-fun').textContent = 'YOU WIN!';
+                winSound.play();
                 didWin= true;
                 //this needs fixed because it runs 3 times
             } else if (playerInputs[i] != randomNumbers[i]) {
+                
                 document.querySelector('#crazy-fun').style.color = 'red';
                 document.querySelector('#crazy-fun').textContent = 'YOU LOSE!';
                 didWin= false;
+                loserSound.play();
             }
         }
         if(didWin){
             numberOfRandomNumbers +=1;
+        }else{
+            
+            const myTimeout = setTimeout(start, 2000);
         }
     }
 
-
+}
 
 
 }
