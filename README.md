@@ -32,3 +32,13 @@ I used Google Fonts Press Start 2P to create the 80s Arcade style font. This fon
 
 ## Code Validation
 ![Color Scheme](./assets/images/memoryhtmlcheck.PNG)
+
+## Audio
+For the audio I used Howler.JS
+https://github.com/goldfire/howler.js#documentation
+
+howler.js is an audio library for the modern web. It defaults to Web Audio API and falls back to HTML5 Audio. This makes working with audio in JavaScript easy and reliable across all platforms.
+
+Additional information, live demos and a user showcase are available at howlerjs.com.
+
+Follow on Twitter for howler.js and development-related discussion: @GoldFireStudios.
