@@ -2,9 +2,10 @@
 
 
 body {
-    overflow: hidden; /* Hide scrollbars */
+    overflow: hidden;
+    /* Hide scrollbars */
     scroll-behavior: unset;
-  }
+}
 
 
 .game {
@@ -20,19 +21,19 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    
+
 
     margin: auto;
     padding: 20px 100px;
 
 }
 
-#crazy-fun{
+#crazy-fun {
     color: rgb(255, 0, 0);
     font-size: 250%;
 }
 
-#header-message{
+#header-message {
     color: rgb(255, 0, 0);
     font-size: 250%;
 }
@@ -44,7 +45,7 @@ body {
     justify-content: space-between;
     width: 50%;
     margin: auto;
-    padding: 80px ;
+    padding: 80px;
 }
 
 #red {
@@ -81,7 +82,7 @@ body {
 
 }
 
-.game-layout{
+.game-layout {
     height: 70vh;
     display: flex;
     flex-direction: column;
@@ -118,6 +119,6 @@ body {
     bottom: 50px;
     align-self: stretch;
 
-   
+
 
 }

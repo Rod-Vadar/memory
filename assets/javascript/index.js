@@ -25,7 +25,7 @@ if player loses, the game is over
 
 */
 
-// soundFX https://github.com/goldfire/howler.js#documentation
+
 
 
 
@@ -41,13 +41,13 @@ playButton.addEventListener('click', function (event) {
 
 //Space bar to start the game
 document.addEventListener('keydown', function (event) {
-console.log(event.code);
-if (event.code === 'Space') {
-document.querySelector('#crazy-fun').textContent = 'GET READY TO PLAY!';
-document.querySelector('#crazy-fun').style.color = 'yellow';
-    setTimeout(start, 1000);
-    
-}
+    console.log(event.code);
+    if (event.code === 'Space') {
+        document.querySelector('#crazy-fun').textContent = 'GET READY TO PLAY!';
+        document.querySelector('#crazy-fun').style.color = 'yellow';
+        setTimeout(start, 1000);
+
+    }
 });
 
 
@@ -58,186 +58,187 @@ let numberOfRandomNumbers = 3; // Global variables as start() is called from its
 
 function start() {
 
-// sounds
-const introSound = new Howl({
-    src: ['intro.wav'],
-    volume: 0.5
-  });
+    // sounds
+    const introSound = new Howl({
+        src: ['intro.wav'],
+        volume: 0.5
+    });
 
-  introSound.play();
-var count = 3;
-function anim() {
-if (count > 0) {
-    console.log(count);
-    document.querySelector('#crazy-fun').style.color = 'yellow';
-    document.querySelector('#crazy-fun').textContent =count;
-    count--;
-    setTimeout(anim, 1000);
-}
-else {
-    document.querySelector('#crazy-fun').textContent = `Level ${numberOfRandomNumbers}`;
-    run();
-    
-}
-}
-anim();
+    introSound.play();
+    var count = 3;
 
-function run(){
-Howler.volume(0.5);
-const loserSound = new Howl({
-    src: ['loser.wav'],
-    volume: 0.5
-  });
+    function anim() {
+        if (count > 0) {
+            console.log(count);
+            document.querySelector('#crazy-fun').style.color = 'yellow';
+            document.querySelector('#crazy-fun').textContent = count;
+            count--;
+            setTimeout(anim, 1000);
+        } else {
+            document.querySelector('#crazy-fun').textContent = `Level ${numberOfRandomNumbers}`;
+            run();
 
-  const playSound = new Howl({
-    src: ['play.wav'],
-    volume: 0.4
-  })
+        }
+    }
+    anim();
 
-  const winSound = new Howl({
-    src:['win.wav'],
-    volume: 0.1
-  })
-let didWin = false;
+    function run() {
+        Howler.volume(0.5);
+        const loserSound = new Howl({
+            src: ['loser.wav'],
+            volume: 0.5
+        });
 
+        const playSound = new Howl({
+            src: ['play.wav'],
+            volume: 0.4
+        })
 
-
-document.querySelector('#start-button').textContent = 'Play Again';
+        const winSound = new Howl({
+            src: ['win.wav'],
+            volume: 0.1
+        })
+        let didWin = false;
 
 
 
-// array to hold random numbers
-const randomNumbers = [];
-randomNumbers.length = numberOfRandomNumbers;
-console.log('number of random numbers = '+randomNumbers.length);
-
-
-for (let i = 0; i < numberOfRandomNumbers; i++) {
-    randomNumbers[i] = Math.floor(Math.random() * 3) + 1;
-}
+        document.querySelector('#start-button').textContent = 'Play Again';
 
 
 
+        // array to hold random numbers
+        const randomNumbers = [];
+        randomNumbers.length = numberOfRandomNumbers;
+        console.log('number of random numbers = ' + randomNumbers.length);
 
-// Flash the buttons that the computer chooses
-let i = 0;
-function sequence() {
-    
-    // document.querySelector('#crazy-fun').textContent = randomNumbers[i];
-    if (i < numberOfRandomNumbers) {
-        if (randomNumbers[i] === 1) {
 
-            document.querySelector('#red').style.backgroundColor = 'white';
-            playSound.play();
-            setTimeout(() => {
-                document.querySelector('#red').style.backgroundColor = 'red';
+        for (let i = 0; i < numberOfRandomNumbers; i++) {
+            randomNumbers[i] = Math.floor(Math.random() * 3) + 1;
+        }
+
+
+
+
+        // Flash the buttons that the computer chooses
+        let i = 0;
+
+        function sequence() {
+
+            // document.querySelector('#crazy-fun').textContent = randomNumbers[i];
+            if (i < numberOfRandomNumbers) {
+                if (randomNumbers[i] === 1) {
+
+                    document.querySelector('#red').style.backgroundColor = 'white';
+                    playSound.play();
+                    setTimeout(() => {
+                        document.querySelector('#red').style.backgroundColor = 'red';
+                        setTimeout(() => {
+                            i++;
+                            sequence();
+                        }, 320)
+                    }, 870);
+                } else if (randomNumbers[i] === 2) {
+
+                    document.querySelector('#yellow').style.backgroundColor = 'white'
+                    playSound.play();
+                    setTimeout(() => {
+                        document.querySelector('#yellow').style.backgroundColor = 'yellow';
+                        setTimeout(() => {
+                            i++;
+                            sequence();
+                        }, 320)
+                    }, 870);
+                } else if (randomNumbers[i] === 3) {
+
+                    document.querySelector('#blue').style.backgroundColor = 'white';
+                    playSound.play();
+                    setTimeout(() => {
+                        document.querySelector('#blue').style.backgroundColor = 'blue';
+                        setTimeout(() => {
+                            i++;
+                            sequence();
+                        }, 320)
+                    }, 870);
+                }
+            }
+
+        }
+        sequence();
+
+        // get the player's inputs
+        // make an array to hold the player's inputs
+        let playerInputs = [];
+
+        //addEventListener for player inputs for left arrow, right arrow, and up arrow
+        document.addEventListener('keydown', function (event) {
+
+            if (event.key === 'ArrowLeft') {
+                document.querySelector('#red').style.backgroundColor = 'white';
+                playSound.play();
                 setTimeout(() => {
-                    i++;
-                    sequence();
-                }, 320)
-            }, 870);
-        } else if (randomNumbers[i] === 2) {
+                    document.querySelector('#red').style.backgroundColor = 'red';
+                }, 270)
+                playerInputs.push(1);
+                if (playerInputs.length === randomNumbers.length) {
+                    comparePlayerInputs()
+                }
 
-            document.querySelector('#yellow').style.backgroundColor = 'white'
-            playSound.play();
-            setTimeout(() => {
-                document.querySelector('#yellow').style.backgroundColor = 'yellow';
+            } else if (event.key === 'ArrowDown') {
+                document.querySelector('#yellow').style.backgroundColor = 'white';
+                playSound.play();
                 setTimeout(() => {
-                    i++;
-                    sequence();
-                }, 320)
-            }, 870);
-        } else if (randomNumbers[i] === 3) {
+                    document.querySelector('#yellow').style.backgroundColor = 'yellow';
+                }, 270)
+                playerInputs.push(2);
+                if (playerInputs.length === randomNumbers.length) {
+                    comparePlayerInputs()
+                }
 
-            document.querySelector('#blue').style.backgroundColor = 'white';
-            playSound.play();
-            setTimeout(() => {
-                document.querySelector('#blue').style.backgroundColor = 'blue';
+            } else if (event.key === 'ArrowRight') {
+                document.querySelector('#blue').style.backgroundColor = 'white';
+                playSound.play();
                 setTimeout(() => {
-                    i++;
-                    sequence();
-                }, 320)
-            }, 870);
+                    document.querySelector('#blue').style.backgroundColor = 'blue';
+                }, 270)
+                playerInputs.push(3);
+                if (playerInputs.length === randomNumbers.length) {
+                    comparePlayerInputs()
+                }
+            }
+        });
+
+
+        // compare the player's inputs to the random numbers in the array
+        function comparePlayerInputs() {
+            console.log(playerInputs);
+            console.log(randomNumbers);
+            console.log(playerInputs == randomNumbers);
+            for (let i = 0; i < playerInputs.length; i++) {
+                if (playerInputs[i] === randomNumbers[i]) {
+                    playerScore += 130;
+                    document.querySelector('#player-score').textContent = playerScore;
+                    document.querySelector('#crazy-fun').style.color = 'green';
+                    document.querySelector('#crazy-fun').textContent = 'YOU WIN!';
+                    winSound.play();
+                    didWin = true;
+
+                } else if (playerInputs[i] != randomNumbers[i]) {
+
+                    document.querySelector('#crazy-fun').style.color = 'red';
+                    document.querySelector('#crazy-fun').textContent = 'YOU LOSE!';
+                    didWin = false;
+                    loserSound.play();
+                }
+            }
+            if (didWin) {
+                numberOfRandomNumbers += 1;
+            } else {
+
+                setTimeout(start, 2000);
+            }
         }
+
     }
-
-}
-sequence();
-
-// get the player's inputs
-// make an array to hold the player's inputs
-let playerInputs = [];
-
-//addEventListener for player inputs for left arrow, right arrow, and up arrow
-document.addEventListener('keydown', function (event) {
-
-    if (event.key === 'ArrowLeft') {
-        document.querySelector('#red').style.backgroundColor = 'white';
-        playSound.play();
-        setTimeout(() => {
-            document.querySelector('#red').style.backgroundColor = 'red';
-        }, 270)
-        playerInputs.push(1);
-        if (playerInputs.length === randomNumbers.length) {
-            comparePlayerInputs()
-        }
-
-    } else if (event.key === 'ArrowDown') {
-        document.querySelector('#yellow').style.backgroundColor = 'white';
-        playSound.play();
-        setTimeout(() => {
-            document.querySelector('#yellow').style.backgroundColor = 'yellow';
-        }, 270)
-        playerInputs.push(2);
-        if (playerInputs.length === randomNumbers.length) {
-            comparePlayerInputs()
-        }
-
-    } else if (event.key === 'ArrowRight') {
-        document.querySelector('#blue').style.backgroundColor = 'white';
-        playSound.play();
-        setTimeout(() => {
-            document.querySelector('#blue').style.backgroundColor = 'blue';
-        }, 270)
-        playerInputs.push(3);
-        if (playerInputs.length === randomNumbers.length) {
-            comparePlayerInputs()
-        }
-    }
-});
-
-
-// compare the player's inputs to the random numbers in the array
-function comparePlayerInputs() {
-    console.log(playerInputs);
-    console.log(randomNumbers);
-    console.log(playerInputs == randomNumbers);
-    for (let i = 0; i < playerInputs.length; i++) {
-        if (playerInputs[i] === randomNumbers[i]) {
-            playerScore += 130;
-            document.querySelector('#player-score').textContent = playerScore;
-            document.querySelector('#crazy-fun').style.color = 'green';
-            document.querySelector('#crazy-fun').textContent = 'YOU WIN!';
-            winSound.play();
-            didWin= true;
-            
-        } else if (playerInputs[i] != randomNumbers[i]) {
-            
-            document.querySelector('#crazy-fun').style.color = 'red';
-            document.querySelector('#crazy-fun').textContent = 'YOU LOSE!';
-            didWin= false;
-            loserSound.play();
-        }
-    }
-    if(didWin){
-        numberOfRandomNumbers +=1;
-    }else{
-        
-        setTimeout(start, 2000);
-    }
-}
-
-}
 
 
 }
