@@ -45,7 +45,7 @@ console.log(event.code);
 if (event.code === 'Space') {
 document.querySelector('#crazy-fun').textContent = 'GET READY TO PLAY!';
 document.querySelector('#crazy-fun').style.color = 'yellow';
-    const myTimeout = setTimeout(start, 1000);
+    setTimeout(start, 1000);
     
 }
 });
@@ -220,7 +220,7 @@ function comparePlayerInputs() {
             document.querySelector('#crazy-fun').textContent = 'YOU WIN!';
             winSound.play();
             didWin= true;
-            //this needs fixed because it runs 3 times
+            
         } else if (playerInputs[i] != randomNumbers[i]) {
             
             document.querySelector('#crazy-fun').style.color = 'red';
@@ -233,7 +233,7 @@ function comparePlayerInputs() {
         numberOfRandomNumbers +=1;
     }else{
         
-        const myTimeout = setTimeout(start, 2000);
+        setTimeout(start, 2000);
     }
 }
 
