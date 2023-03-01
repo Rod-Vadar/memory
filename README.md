@@ -22,6 +22,12 @@ The game is very easy in the beginning but rapidly becomes more difficult as the
  Right Arrow activates the blue light.
  F5 restarts the game.
 
+ ## Game Wireframe
+ ![Game Wireframe](./assets/images/memorywireframe.PNG)
+
+ ## Game Flow Chart
+ ![Game Flow Chart](./assets/images/memoryflowchart.PNG)
+
 ## Color Scheme
 
 ![Color Scheme](./assets/images/memorycolor.PNG)
@@ -42,3 +48,8 @@ howler.js is an audio library for the modern web. It defaults to Web Audio API a
 Additional information, live demos and a user showcase are available at howlerjs.com.
 
 Follow on Twitter for howler.js and development-related discussion: @GoldFireStudios.
+
+## Bugs
+There is an annoying problem with the player selection audio levels which occurs after one cycle of the game.
+I am unsure why this occurs as I have the volume level hard-coded in the howler.js function call.
+I have not been able to find information yet to solve this problem.
