@@ -60,7 +60,7 @@ function start() {
 
     // sounds
     const introSound = new Howl({
-        src: ['intro.wav'],
+        src: ['./assets/sounds/intro.wav'],
         volume: 0.5
     });
 
@@ -85,17 +85,17 @@ function start() {
     function run() {
         Howler.volume(0.5);
         const loserSound = new Howl({
-            src: ['loser.wav'],
+            src: ['./assets/sounds/loser.wav'],
             volume: 0.5
         });
 
         const playSound = new Howl({
-            src: ['play.wav'],
+            src: ['./assets/sounds/play.wav'],
             volume: 0.4
         })
 
         const winSound = new Howl({
-            src: ['win.wav'],
+            src: ['./assets/sounds/win.wav'],
             volume: 0.1
         })
         let didWin = false;
