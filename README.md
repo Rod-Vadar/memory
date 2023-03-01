@@ -11,6 +11,10 @@ The game is very easy in the beginning but rapidly becomes more difficult as the
 
  **March 28, 2023**
 
+ ## Game Deployment
+ The game is deployed and hosted on Github. You can play it here:
+ https://rod-vadar.github.io/memory/
+
  Game controls
  The game is designed "Arcade Style", for the desktop with keyboard controls.  The mouse does not interact with the game.
  The game does not play a mobile device.
@@ -36,8 +40,11 @@ The game is very easy in the beginning but rapidly becomes more difficult as the
 
 I used Google Fonts Press Start 2P to create the 80s Arcade style font. This font is perfect for what I am doing.
 
-## Code Validation
-![Color Scheme](./assets/images/memoryhtmlcheck.PNG)
+## HTML Validation
+![HTML Validation](./assets/images/memoryhtmlcheck.PNG)
+
+## CSS Validation
+![CSS Validation](./assets/images/memorycssvalid.PNG)
 
 ## Audio
 For the audio I used Howler.JS
@@ -53,3 +60,16 @@ Follow on Twitter for howler.js and development-related discussion: @GoldFireStu
 There is an annoying problem with the player selection audio levels which occurs after one cycle of the game.
 I am unsure why this occurs as I have the volume level hard-coded in the howler.js function call.
 I have not been able to find information yet to solve this problem.
+
+## Integrity
+I checked the HTML integrity on https://validator.w3.org/
+I checked the CSS integrity on https://jigsaw.w3.org/css-validator/validator
+I checked the JavaScript integrity on https://jshint.com/
+
+
+## Technology
+Html, JavaScript, and CSS are used to create the game.
+Howler.js is used to play audio files for the game.
+Github is used to store all the code for the game.
+Gitpod and VSCode are used to write the code.
+The game is deployed and hosted on Github.
