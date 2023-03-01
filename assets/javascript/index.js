@@ -92,12 +92,12 @@ function start() {
         const playSound = new Howl({
             src: ['./assets/sounds/play.wav'],
             volume: 0.4
-        })
+        });
 
         const winSound = new Howl({
             src: ['./assets/sounds/win.wav'],
             volume: 0.1
-        })
+        });
         let didWin = false;
 
 
@@ -135,18 +135,18 @@ function start() {
                         setTimeout(() => {
                             i++;
                             sequence();
-                        }, 320)
+                        }, 320);
                     }, 870);
                 } else if (randomNumbers[i] === 2) {
 
-                    document.querySelector('#yellow').style.backgroundColor = 'white'
+                    document.querySelector('#yellow').style.backgroundColor = 'white';
                     playSound.play();
                     setTimeout(() => {
                         document.querySelector('#yellow').style.backgroundColor = 'yellow';
                         setTimeout(() => {
                             i++;
                             sequence();
-                        }, 320)
+                        }, 320);
                     }, 870);
                 } else if (randomNumbers[i] === 3) {
 
@@ -157,7 +157,7 @@ function start() {
                         setTimeout(() => {
                             i++;
                             sequence();
-                        }, 320)
+                        }, 320);
                     }, 870);
                 }
             }
@@ -177,10 +177,10 @@ function start() {
                 playSound.play();
                 setTimeout(() => {
                     document.querySelector('#red').style.backgroundColor = 'red';
-                }, 270)
+                }, 270);
                 playerInputs.push(1);
                 if (playerInputs.length === randomNumbers.length) {
-                    comparePlayerInputs()
+                    comparePlayerInputs();
                 }
 
             } else if (event.key === 'ArrowDown') {
@@ -188,10 +188,10 @@ function start() {
                 playSound.play();
                 setTimeout(() => {
                     document.querySelector('#yellow').style.backgroundColor = 'yellow';
-                }, 270)
+                }, 270);
                 playerInputs.push(2);
                 if (playerInputs.length === randomNumbers.length) {
-                    comparePlayerInputs()
+                    comparePlayerInputs();
                 }
 
             } else if (event.key === 'ArrowRight') {
@@ -199,10 +199,10 @@ function start() {
                 playSound.play();
                 setTimeout(() => {
                     document.querySelector('#blue').style.backgroundColor = 'blue';
-                }, 270)
+                }, 270);
                 playerInputs.push(3);
                 if (playerInputs.length === randomNumbers.length) {
-                    comparePlayerInputs()
+                    comparePlayerInputs();
                 }
             }
         });
